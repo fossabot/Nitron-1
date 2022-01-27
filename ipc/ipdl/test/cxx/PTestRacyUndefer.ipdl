@@ -1,0 +1,28 @@
+
+namespace mozilla {
+namespace _ipdltest {
+
+
+intr protocol PTestRacyUndefer {
+
+child:
+    async Start();
+
+    async AwakenSpam();
+    async AwakenRaceWinTwice();
+
+    [LegacyIntr] intr Race();
+
+    async __delete__();
+
+parent:
+
+    [LegacyIntr] intr Spam();
+    [LegacyIntr] intr RaceWinTwice();
+
+    async Done();
+};
+
+
+} // namespace mozilla
+} // namespace _ipdltest
